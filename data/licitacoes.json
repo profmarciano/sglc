@@ -1,0 +1,76 @@
+[
+  {
+    "id": "4d8a7641-b96e-4477-aa31-bdd5210d0ebc",
+    "numero": "001/2024",
+    "objeto": "Contratação de Serviço de Nuvem",
+    "fase": "Levantamento dos Itens",
+    "dataInicio": "2026-03-25",
+    "valorEstimado": 150000,
+    "history": [
+      {
+        "from": "Elaboração do DFD",
+        "to": "Levantamento dos Itens",
+        "date": "2026-03-25T18:50:51.379Z",
+        "responsible": "Hugo Marciano"
+      },
+      {
+        "from": "Levantamento dos Itens",
+        "to": "Especificação",
+        "date": "2026-03-25T18:55:00.382Z",
+        "responsible": "Amanda"
+      },
+      {
+        "from": "Especificação",
+        "to": "Quantitativos",
+        "date": "2026-03-26T14:31:15.147Z",
+        "responsible": "Hugo Marciano"
+      },
+      {
+        "from": "Elaboração do DFD",
+        "to": "Levantamento dos Itens",
+        "date": "2026-03-31T12:33:39.347Z",
+        "responsible": "admin@sglc.gov"
+      }
+    ]
+  },
+  {
+    "id": "c3543603-ed38-4496-b507-3e36aa385e0c",
+    "numero": "001/2025",
+    "objeto": "Compras de Fibras ópticas",
+    "fase": "Elaboração do DFD",
+    "dataInicio": "2026-03-26",
+    "valorEstimado": 500000,
+    "history": []
+  },
+  {
+    "id": "ee55be69-b481-483e-a866-b782eb45f122",
+    "numero": "002/2025",
+    "objeto": "Aquisição de computadores",
+    "fase": "Especificação",
+    "dataInicio": "2026-03-26",
+    "valorEstimado": 100000,
+    "history": [
+      {
+        "from": "Elaboração do DFD",
+        "to": "Levantamento dos Itens",
+        "date": "2026-03-26T14:00:59.369Z",
+        "responsible": "Hugo Marciano"
+      },
+      {
+        "from": "Levantamento dos Itens",
+        "to": "Especificação",
+        "date": "2026-03-27T14:15:05.309Z",
+        "responsible": "Amanda Reis"
+      }
+    ]
+  },
+  {
+    "id": "e9aab5e1-f475-4e41-8abd-d212fe64f487",
+    "numero": "01/2026",
+    "objeto": "Teste de compra",
+    "fase": "Elaboração do DFD",
+    "dataInicio": "2026-03-26",
+    "valorEstimado": 20000,
+    "history": []
+  }
+]
