@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SGLC
 
-## Getting Started
+Sistema de Gestão de Licitações e Contratos desenvolvido com `Next.js` e `NextAuth`.
 
-First, run the development server:
+## Execução local
+
+1. Instale as dependências:
+
+```bash
+npm install
+```
+
+2. Crie um arquivo `.env.local` com as variáveis abaixo:
+
+```env
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=gere-um-segredo-forte-aqui
+```
+
+3. Inicie o projeto:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy na Vercel
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para funcionar em produção, configure estas variáveis de ambiente no painel da Vercel:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXTAUTH_URL=https://sglc.vercel.app
+NEXTAUTH_SECRET=gere-um-segredo-forte-aqui
+```
 
-## Learn More
+> Se o domínio da Vercel for diferente, substitua o valor de `NEXTAUTH_URL` pela URL real do deploy.
 
-To learn more about Next.js, take a look at the following resources:
+### Como gerar um secret
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Você pode usar um valor aleatório longo, por exemplo:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+openssl rand -base64 32
+```
 
-## Deploy on Vercel
+ou qualquer string forte com pelo menos 32 caracteres.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Observação importante
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Atualmente os dados são persistidos em arquivos `data/*.json`. Em ambientes serverless, isso é adequado para demonstração, mas para produção o ideal é migrar para um banco de dados persistente.

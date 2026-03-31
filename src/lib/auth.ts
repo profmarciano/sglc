@@ -1,7 +1,6 @@
-import NextAuth from 'next-auth';
+import NextAuth, { type NextAuthOptions, type Session, type User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { JWT } from 'next-auth/jwt';
-import { Session, User } from 'next-auth';
 import bcrypt from 'bcryptjs';
 
 const users = [
@@ -15,7 +14,8 @@ const users = [
     // Add more users as needed
 ];
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
+    secret: process.env.NEXTAUTH_SECRET,
     providers: [
         CredentialsProvider({
             name: 'credentials',
