@@ -59,7 +59,8 @@ export async function PUT(request: Request, context: { params: Promise<{ id: str
 
         return NextResponse.json(updated);
     } catch (error) {
-        return NextResponse.json({ message: 'Erro no servidor', error }, { status: 500 });
+        const message = error instanceof Error ? error.message : 'Erro no servidor';
+        return NextResponse.json({ message }, { status: 500 });
     }
 }
 

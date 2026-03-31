@@ -95,7 +95,8 @@ export async function PUT(request: Request, context: { params?: Promise<{ id: st
         return NextResponse.json(updated);
     } catch (error) {
         console.error('API /api/licitacoes/[id] PUT error', error);
-        return NextResponse.json({ message: 'Erro interno do servidor' }, { status: 500 });
+        const message = error instanceof Error ? error.message : 'Erro interno do servidor';
+        return NextResponse.json({ message }, { status: 500 });
     }
 }
 

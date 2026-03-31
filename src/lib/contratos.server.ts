@@ -1,5 +1,5 @@
-import fs from 'fs/promises';
 import path from 'path';
+import { readPersistentJson, writePersistentJson } from './persistent-json';
 
 export interface Contrato {
     id: string;
@@ -14,21 +14,12 @@ export interface Contrato {
 }
 
 const contratosFilePath = path.join(process.cwd(), 'data', 'contratos.json');
+const contratosBlobPath = 'data/contratos.json';
 
 export async function readContratos(): Promise<Contrato[]> {
-    try {
-        const content = await fs.readFile(contratosFilePath, 'utf-8');
-        return JSON.parse(content || '[]');
-    } catch (err) {
-        if ((err as NodeJS.ErrnoException).code === 'ENOENT') {
-            await fs.writeFile(contratosFilePath, JSON.stringify([], null, 2));
-            return [];
-        }
-        throw err;
-    }
+    return readPersistentJson<Contrato[]>(contratosBlobPath, contratosFilePath, []);
 }
 
 export async function writeContratos(contratos: Contrato[]) {
-    await fs.mkdir(path.dirname(contratosFilePath), { recursive: true });
-    await fs.writeFile(contratosFilePath, JSON.stringify(contratos, null, 2));
+    await writePersistentJson<Contrato[]>(contratosBlobPath, contratosFilePath, contratos);
 }

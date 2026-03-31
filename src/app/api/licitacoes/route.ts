@@ -57,6 +57,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json(novo, { status: 201 });
     } catch (error) {
-        return NextResponse.json({ message: 'Erro no servidor', error }, { status: 500 });
+        const message = error instanceof Error ? error.message : 'Erro no servidor';
+        return NextResponse.json({ message }, { status: 500 });
     }
 }

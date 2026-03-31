@@ -1,6 +1,5 @@
-import { promises as fs } from 'fs';
 import path from 'path';
-import { fasesLic, isValidFase } from './fases';
+import { readPersistentJson, writePersistentJson } from './persistent-json';
 
 export interface PhaseHistory {
     from: string;
@@ -19,30 +18,13 @@ export interface Licitacao {
     history: PhaseHistory[];
 }
 
-const dataDir = path.join(process.cwd(), 'data');
-const dataFile = path.join(dataDir, 'licitacoes.json');
-
-async function ensureDataFile() {
-    try {
-        await fs.access(dataFile);
-    } catch {
-        await fs.mkdir(dataDir, { recursive: true });
-        await fs.writeFile(dataFile, JSON.stringify([]), 'utf8');
-    }
-}
+const dataFile = path.join(process.cwd(), 'data', 'licitacoes.json');
+const licitacoesBlobPath = 'data/licitacoes.json';
 
 export async function readLicitacoes(): Promise<Licitacao[]> {
-    await ensureDataFile();
-    const raw = await fs.readFile(dataFile, 'utf8');
-    try {
-        const parsed = JSON.parse(raw);
-        return Array.isArray(parsed) ? parsed : [];
-    } catch {
-        return [];
-    }
+    return readPersistentJson<Licitacao[]>(licitacoesBlobPath, dataFile, []);
 }
 
 export async function writeLicitacoes(list: Licitacao[]) {
-    await ensureDataFile();
-    await fs.writeFile(dataFile, JSON.stringify(list, null, 2), 'utf8');
+    await writePersistentJson<Licitacao[]>(licitacoesBlobPath, dataFile, list);
 }
